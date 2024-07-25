@@ -1,9 +1,9 @@
-mapboxgl.accessToken = 'YOUR ACCESS KEY';
+mapboxgl.accessToken = 'pk.eyJ1IjoidG9ycml4byIsImEiOiJjbHl6NWt1ZXQwYmJ5MmltdDkxYzJ1MjgxIn0.TlttofPkrh4IvxEvX8EPRg';
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
-    center: [120, 30], // Starting position [lng, lat]
-    zoom:3,  // Starting zoom
+    center: [110, 30], // Starting position [lng, lat]
+    zoom:4,  // Starting zoom
     pitch: 45,
     bearing: -17.6,
     antialias: true
@@ -59,7 +59,7 @@ map.on('style.load', () => {
 });
 
 // Example data for Christian temples and churches
-const data = [
+const churches = [
     {
         name: 'St. John\'s Cathedral',
         coordinates: [114.15975207832996, 22.278784192318067],
@@ -259,9 +259,9 @@ const data = [
 ];
 
 // Add markers to the map
-data.forEach(point => {
-    const marker = new mapboxgl.Marker()
-        .setLngLat(point.coordinates)
-        .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(`${point.name}\n${point.description}`))
+churches.forEach(church => {
+    new mapboxgl.Marker({color: '#FF5733'})
+        .setLngLat(church.coordinates)
+        .setPopup(new mapboxgl.Popup().setHTML(`<h3>${church.name}</h3><p>${church.description}</p>`))
         .addTo(map);
 });
